@@ -15,10 +15,14 @@ int main(void)
 	{
 		for (j = '0'; j <= '9'; j++)
 		{
+			if (i == '9' && j == '9')
+				break;
 			for (k = '0'; k <= '9'; k++)
 			{
-				for (l = j + 1; l <= '9'; l++)
+				for (l = '0'; l <= '9'; l++)
 				{
+					if ((i == k) && (j == l))
+						continue;
 					putchar(i);
 					putchar(j);
 					putchar(' ');
@@ -29,6 +33,7 @@ int main(void)
 					putchar(',');
 					putchar(' ');
 				}
+				l = '0';
 			}
 		}
 	}
