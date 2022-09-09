@@ -10,6 +10,7 @@
 int main(void)
 {
 	int no, a;
+	
 	for (no = '0'; no <= '9'; no++)
 	{
 		putchar(no);
