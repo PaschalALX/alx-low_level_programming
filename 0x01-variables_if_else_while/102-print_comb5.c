@@ -10,19 +10,20 @@
 int main(void)
 {
 	int i, j, k, l;
+	int x, y;
 
 	for (i = '0'; i <= '9'; i++)
 	{
 		for (j = '0'; j <= '9'; j++)
 		{
-			if (i == '9' && j == '9')
-				break;
-			for (k = '0'; k <= '9'; k++)
+			x = i;
+			j++;
+			y = j;
+			j--;
+			for (k = x; k <= '9'; k++)
 			{
-				for (l = '0'; l <= '9'; l++)
+				for (l = y; l <= '9'; l++)
 				{
-					if ((i == k) && (j == l))
-						continue;
 					putchar(i);
 					putchar(j);
 					putchar(' ');
@@ -33,7 +34,7 @@ int main(void)
 					putchar(',');
 					putchar(' ');
 				}
-				l = '0';
+				y = '0';
 			}
 		}
 	}
