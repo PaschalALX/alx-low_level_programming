@@ -1,6 +1,32 @@
 #include "main.h"
 
 /**
+ * printer - to print condtional output
+ * @b: b parameter
+ * @c: c parameter
+ * @d: d parameter
+ * @e: e parameter
+ *
+ * Return: void
+ */
+void printer(b, c, d, e)
+{
+	if (b == 0)
+		_putchar(e);
+	else
+	{
+		_putchar(c);
+		_putchar(d);
+		_putchar(e);
+	}
+	if (b != n)
+	{
+		_putchar(',');
+		_putchar(' ');
+	}
+}
+
+/**
  * print_times_table - Prints to times table
  * @n: nth term
  *
@@ -35,19 +61,7 @@ void print_times_table(int n)
 				d = ((z % 100) / 10) + '0';
 				e = ((z % 100) % 10) + '0';
 			}
-			if (b == 0)
-				_putchar(e);
-			else
-			{
-				_putchar(c);
-				_putchar(d);
-				_putchar(e);
-			}
-			if (b != n)
-			{
-				_putchar(',');
-				_putchar(' ');
-			}
+			printer(b, c, d, e);
 		}
 		_putchar(10);
 	}
