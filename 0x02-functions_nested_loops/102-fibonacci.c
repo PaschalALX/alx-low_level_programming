@@ -21,7 +21,7 @@ int main(void)
 		prev = curr;
 		curr = sum;
 	}
-	for (i = 0; 1 < 50; 1++)
+	for (i = 0; i < 50; i++)
 	{
 		printf("%d", fib[i]);
 		putchar(',');
