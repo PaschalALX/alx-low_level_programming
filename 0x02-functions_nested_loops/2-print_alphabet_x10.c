@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_alphabet - Prints alphabets in small letters
+ * print_alphabet - Prints alphabets in small letters x 10
  *
  * Return: void
  */
@@ -19,7 +19,7 @@ void print_alphabet_x10(void)
 				break;
 			alpha++;
 		}
-		alpha = 'a';	
+		alpha = 'a';
 		_putchar(10);
 		i++;
 	}
