@@ -5,7 +5,6 @@
  * pointers, array/tables, or structures
  * Return: 0
  */
-
 int main(void)
 {
 	int counter, overflow;
