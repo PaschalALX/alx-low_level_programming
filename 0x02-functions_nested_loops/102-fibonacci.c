@@ -7,10 +7,10 @@
  */
 int main(void)
 {
-	int prev = 1;
-	int curr = 2;
-	int fib[50];
-	int sum, i;
+	unsigned int prev = 1;
+	unsigned int curr = 2;
+	unsigned int fib[50];
+	unsigned int sum, i;
 
 	fib[0] = prev;
 	fib[1] = curr;
