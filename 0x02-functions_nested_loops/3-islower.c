@@ -2,6 +2,7 @@
 
 /**
  * _islower - Checks if character is in lower case
+ * @parameterc: Receives a character as argument
  *
  * Return: int
  */
@@ -18,5 +19,5 @@ int _islower(int c)
 			break;
 		alpha++;
 	}
-	return res;
+	return (res);
 }
