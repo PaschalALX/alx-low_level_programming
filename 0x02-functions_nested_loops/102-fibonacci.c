@@ -24,6 +24,8 @@ int main(void)
 	for (i = 0; i < 50; i++)
 	{
 		printf("%lu", fib[i]);
+		if (i == 49)
+			break;
 		putchar(',');
 		putchar(' ');
 	}
