@@ -6,10 +6,11 @@
  * @c: c parameter
  * @d: d parameter
  * @e: e parameter
+ * @n: n parameter
  *
  * Return: void
  */
-void printer(b, c, d, e)
+void printer(int b, int c, int d, int e, int n)
 {
 	if (b == 0)
 		_putchar(e);
@@ -61,7 +62,7 @@ void print_times_table(int n)
 				d = ((z % 100) / 10) + '0';
 				e = ((z % 100) % 10) + '0';
 			}
-			printer(b, c, d, e);
+			printer(b, c, d, e, n);
 		}
 		_putchar(10);
 	}
