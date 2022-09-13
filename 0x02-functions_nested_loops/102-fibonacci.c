@@ -7,10 +7,10 @@
  */
 int main(void)
 {
-	unsigned int prev = 1;
-	unsigned int curr = 2;
-	unsigned int fib[50];
-	unsigned int sum, i;
+	unsigned long int prev = 1;
+	unsigned long int curr = 2;
+	unsigned long int fib[50];
+	unsigned long int sum, i;
 
 	fib[0] = prev;
 	fib[1] = curr;
@@ -23,7 +23,7 @@ int main(void)
 	}
 	for (i = 0; i < 50; i++)
 	{
-		printf("%d", fib[i]);
+		printf("%lu", fib[i]);
 		putchar(',');
 		putchar(' ');
 	}
