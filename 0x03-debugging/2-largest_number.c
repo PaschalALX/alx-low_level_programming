@@ -12,18 +12,13 @@ long largest_number(long a, long b, long c)
 {
 	int largest;
 
-	if (a > b && a > c)
-	{
+	if (a > b)
 		largest = a;
-	}
-	else if (b > a && b > c)
-	{
-		largest = b;
-	}
 	else
-	{
+		largest = b;
+
+	if (largest < c)
 		largest = c;
-	}
 
 	return (largest);
 }
