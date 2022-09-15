@@ -20,10 +20,10 @@ void more_numbers(void)
 				a = no / 10;
 				b = no % 10;
 				_putchar(a + '0');
-				_putchar(b + '0');
 			}
 			else
-				_putchar(no + '0');
+				b = no;
+			_putchar(b + '0');
 		}
 		_putchar(10);
 	}
