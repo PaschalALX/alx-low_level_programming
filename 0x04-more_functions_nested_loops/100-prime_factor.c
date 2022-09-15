@@ -25,7 +25,7 @@ int main(void)
 		if (buildup >= no)
 			break;
 	}
-	printf("%d", divisor);
+	printf("%d\n", divisor);
 
 	return (0);
 }
