@@ -12,6 +12,9 @@ void print_triangle(int size)
 	int i, j;
 	int k = size;
 
+	if (size <= 0)
+		_putchar(10);
+
 	for (i = 0; i < size; i++)
 	{
 		k--;
