@@ -11,7 +11,7 @@ int main(void)
 	unsigned long curr = 2;
 	unsigned long sum, i;
 
-	printf("%d, %d, ", prev, curr);
+	printf("%lu, %lu, ", prev, curr);
 
 	for (i = 2; i < 99; i++)
 	{
