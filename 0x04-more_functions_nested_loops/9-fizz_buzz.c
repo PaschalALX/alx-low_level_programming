@@ -24,7 +24,9 @@ int main(void)
 		}
 		if ((i % 5) == 0)
 		{
-			printf("Buzz ");
+			printf("Buzz");
+			if (i != 100)
+				putchar(' ');
 			continue;
 		}
 		printf("%d ", i);
