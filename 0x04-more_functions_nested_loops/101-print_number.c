@@ -13,7 +13,7 @@ void print_number(int n)
 	int multi_tens = 1;
 	int digit, diff;
 
-	if (n < 0)
+	if (n < 0 || n == -0)
 	{
 		n = -n;
 		_putchar('-');
