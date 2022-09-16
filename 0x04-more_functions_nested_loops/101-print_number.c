@@ -9,9 +9,9 @@
 
 void print_number(int n)
 {
-	unsigned int n_copy = n;
-	unsigned int multi_tens = 1;
-	unsigned int digit, diff;
+	int n_copy = n;
+	int multi_tens = 1;
+	int digit, diff;
 
 	if (n < 0)
 	{
@@ -21,11 +21,6 @@ void print_number(int n)
 
 	if ((n / 10) == 0)
 		_putchar((n % 10) + '0');
-	else if ((n / 10) <= 9)
-	{
-		_putchar((n / 10) + '0');
-		_putchar((n % 10) + '0');
-	}
 	else
 	{
 		while (1)
