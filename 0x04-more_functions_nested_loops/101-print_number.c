@@ -11,8 +11,8 @@ void print_number(int n)
 {
 	int n_copy = n;
 	int multi_tens = 1;
-	int digit, diff;
-
+	unsigned int digit, diff;
+	
 	if (n < 0)
 	{
 		n = -n;
