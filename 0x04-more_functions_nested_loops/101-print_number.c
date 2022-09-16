@@ -9,29 +9,41 @@
 
 void print_number(int n)
 {
-	unsigned int tens, digit, positive = n;
-	double t = 1;
+	int n_copy = n;
+	int multi_tens = 1;
+	int digit, diff;
 
-	if (n == 0)
-		_putchar('0');
+	if (n < 0)
+	{
+		n = -n;
+		_putchar('-');
+	}
+
+	if ((n / 10) == 0)
+		_putchar((n % 10) + '0');
+	else if ((n / 10) <= 9)
+	{
+		_putchar((n / 10) + '0');
+		_putchar((n % 10) + '0');
+	}
 	else
 	{
-		if (n < 0)
+		while (1)
 		{
-			positive = n * -1;
-			_putchar('-');
+			if ((n_copy / 10) == 0)
+				break;
+			n_copy /= 10;
+			multi_tens *= 10;
 		}
-
-		while (t <= positive)
-			t *= 10;
-		tens = t / 10;
-
-		while (tens >= 1)
+		diff = n;
+		while (1)
 		{
-			digit = positive / tens;
+			if (multi_tens < 1)
+				break;
+			digit = (diff / multi_tens);
+			diff = diff - (digit * multi_tens);
 			_putchar(digit + '0');
-			positive = (positive - (tens * digit));
-			tens /= 10;
+			multi_tens /= 10;
 		}
 	}
 }
