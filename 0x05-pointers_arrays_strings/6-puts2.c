@@ -10,12 +10,10 @@
 
 void puts2(char *str)
 {
-	int i;
+	unsigned long int i;
 
 	for (i = 0; i < strlen(str); i = i + 2)
 	{
 		putchar(str[i]);
 	}
-	str_cpy[strlen(s)] = '\0';
-	strcpy(s, str_cpy);
 }
