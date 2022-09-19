@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <stdlib.h>
 /**
  * rev_string - reverse string
  * @s: string parameter
@@ -10,9 +10,10 @@
 
 void rev_string(char *s)
 {
-	char str_cpy[10];
+	char *str_cpy;
 	int i, j;
-	
+
+	str_cpy = (char *) malloc(strlen(s) + 1);
 	j = 0;
 	for (i = (strlen(s) - 1); i >= 0; i--)
 	{
