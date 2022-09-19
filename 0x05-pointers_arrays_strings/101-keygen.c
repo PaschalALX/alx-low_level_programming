@@ -58,7 +58,7 @@ void randomPasswordGeneration(int N)
  */
 int main(void)
 {
-	int N = 15;
+	int N = 100;
 
 	randomPasswordGeneration(N);
 
