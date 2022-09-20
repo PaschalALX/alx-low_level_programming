@@ -35,6 +35,8 @@ int get_int_index_and_sign(char *str, int *is_negative_flag)
 	/**
 	 * The following code helps determine the sign (+ or -)
 	 */
+	sign2 = 1;
+	
 	if (index > 0)
 	{
 		for (i = (index - 1); i >= 0; i--)
@@ -45,6 +47,7 @@ int get_int_index_and_sign(char *str, int *is_negative_flag)
 	}
 	if (sign2 < 0)
 		*is_negative_flag = 1;
+
 	return (index);
 }
 
