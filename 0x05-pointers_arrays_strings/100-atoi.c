@@ -3,27 +3,6 @@
 #include <stdlib.h>
 
 /**
- * convert_char_to_int - Converts a single ascii character to integer
- * @c: character
- *
- * Return: int
- */
-int convert_char_to_int(char c)
-{
-	int digit, i;
-
-	digit = -1;
-	for (i = '0'; i <= '9'; i++)
-	{
-		digit++;
-		if (c == i)
-			break;
-	}
-	
-	return digit;
-}
-
-/**
  * get_int_index_and_sign - Gets the starting index of number
  * @str: string
  * @is_negative_flag: boolean
@@ -53,18 +32,18 @@ int get_int_index_and_sign(char *str, int *is_negative_flag)
 			}
 		}
 	}
-	
+
 	return (index);
 }
 
 /**
- * parse_string - Filter string to remove unwanted characters
+ * string_parser - Filter string to remove unwanted characters
  * @str: string
  * @start_idx: starting index
  *
  * Return: char *
  */
-char *parse_string(char *str, int start_idx)
+char *string_parser(char *str, int start_idx)
 {
 	char *parsed_str;
 	int str_size, i, j;
@@ -80,7 +59,7 @@ char *parse_string(char *str, int start_idx)
 	}
 	*(parsed_str + (j)) = '\0';
 
-	return parsed_str;
+	return (parsed_str);
 }
 
 /**
@@ -98,7 +77,7 @@ int get_place_value(char *str)
 	{
 		pv *= 10;
 	}
-	
+
 	return (pv);
 }
 
@@ -106,24 +85,31 @@ int get_place_value(char *str)
  * exec - Does the main execution
  * @str: parsed string
  * @place_value: place value in int
- * idx: starting index
+ * @idx: starting index
  *
  * Return: int
  */
 int exec(char *str, int place_value, int idx)
 {
-	int num;
+	int num, digit, i;
 
+	digit = -1;
 	num = 0;
+	for (i = '0'; i <= '9'; i++)
+	{
+		digit++;
+		if (str[idx] == i)
+			break;
+	}
 	if (!(place_value / 10))
 	{
-		num = convert_char_to_int(str[idx]);
-		
+		num = digit;
+
 		return (num);
 	}
 	else
 	{
-		num = convert_char_to_int(str[idx]) * place_value;
+		num = digit * place_value;
 		place_value /= 10;
 		idx++;
 
@@ -143,10 +129,13 @@ int _atoi(char *str)
 	char *parsed_str;
 
 	start_idx = get_int_index_and_sign(str, &is_negative_flag);
-	parsed_str = parse_string(str, start_idx);
+	if (start_idx == -1)
+		return (0);
+
+	parsed_str = string_parser(str, start_idx);
 	place_value = get_place_value(parsed_str);
 
 	num = exec(parsed_str, place_value, 0);
-	
+
 	return (is_negative_flag ? -num : num);
 }
