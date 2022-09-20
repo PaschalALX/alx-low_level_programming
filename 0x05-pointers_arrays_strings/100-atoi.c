@@ -91,7 +91,8 @@ int get_place_value(char *str)
  */
 int exec(char *str, int place_value, int idx)
 {
-	int num, digit, i;
+	long num; 
+	int digit, i;
 
 	digit = -1;
 	num = 0;
