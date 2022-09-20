@@ -1,102 +1,152 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
- * _strlen - returns the length of a string
- * @s: string
- * Return: length
+ * convert_char_to_int - Converts a single ascii character to integer
+ * @c: character
+ *
+ * Return: int
  */
-
-int _strlen(char *s)
+int convert_char_to_int(char c)
 {
-	int len = 0;
+	int digit, i;
 
-	while (*s != '\0')
+	digit = -1;
+	for (i = '0'; i <= '9'; i++)
 	{
-		len++;
-		s++;
+		digit++;
+		if (c == i)
+			break;
 	}
-
-	return (len);
+	
+	return digit;
 }
 
 /**
- * idx_num_starts - find index where a digit is first found in string
- * @s: string to search
- * Return: integer index where digit is first found
+ * get_int_index_and_sign - Gets the starting index of number
+ * @str: string
+ * @is_negative_flag: boolean
+ *
+ * Return: int
  */
-
-int idx_num_starts(char *s)
+int get_int_index_and_sign(char *str, int *is_negative_flag)
 {
-	int i;
+	int index, size_of_str, i;
 
-	for (i = 0; i < _strlen(s); i++)
+	index = -1;
+	size_of_str = strlen(str) + 1;
+	*is_negative_flag = 0;
+
+	if (str[0] >= '0' && str[0] <= '9')
+		index = 0;
+	else
 	{
-		if (s[i] >= '0' && s[i] <= '9')
-			return (i);
+		for (i = 0; i < size_of_str; i++)
+		{
+			if (str[i] >= '0' && str[i] <= '9')
+			{
+				index = i;
+				if (str[i - 1] == '-')
+					*is_negative_flag = 1;
+				break;
+			}
+		}
 	}
-	return (-1); /* return -1 if no digits found */
+	
+	return (index);
 }
 
 /**
- * find_sign - determine if integer is negative
- * @s: integer
- * Return: integer 1 or -1
+ * parse_string - Filter string to remove unwanted characters
+ * @str: string
+ * @start_idx: starting index
+ *
+ * Return: char *
  */
-int find_sign(char *s)
+char *parse_string(char *str, int start_idx)
 {
-	int negatives = 0, i = 0, sign = 1;
+	char *parsed_str;
+	int str_size, i, j;
 
-	while (i < (idx_num_starts(s)))
+	j = 0;
+	str_size = strlen(str) + 1;
+	parsed_str = (char *) malloc(str_size);
+
+	for (i = start_idx; ((str[i] >= '0' && str[i] <= '9')); i++)
 	{
-		if (s[i++] == '-')
-			negatives++;
+		*(parsed_str + j) = str[i];
+		j++;
 	}
+	*(parsed_str + (j)) = '\0';
 
-	if (negatives % 2 != 0)
-		sign = -1;
-
-	return (sign);
+	return parsed_str;
 }
 
 /**
- * _atoi - convert string to int
- * @s: string to convert
- * Return: integer
+ * get_place_value - gets place value of string number
+ * @str: string
+ *
+ * Return: int
  */
-
-int _atoi(char *s)
+int get_place_value(char *str)
 {
-	int idx_digit_starts = (idx_num_starts(s));
-	int sign;
-	int digits_to_print = 0;
-	int t = 1, i;
-	unsigned int num = 0;
-	int digit = (idx_num_starts(s));
+	int pv, i;
 
-	if (idx_digit_starts < 0) /* if no digits found, exit program */
-		return (0);
-
-	sign = find_sign(s);
-
-	while ((s[idx_digit_starts] >= '0' && s[idx_digit_starts] <= '9')
-			&& (idx_digit_starts <= _strlen(s))) /* count digits to print */
+	pv = 1;
+	for (i = 1; str[i]; i++)
 	{
-		digits_to_print += 1;
-		idx_digit_starts++;
+		pv *= 10;
 	}
+	
+	return (pv);
+}
 
-	i = 1;
-	while (i < digits_to_print) /* find powers of ten to multiply places */
+/**
+ * exec - Does the main execution
+ * @str: parsed string
+ * @place_value: place value in int
+ * idx: starting index
+ *
+ * Return: int
+ */
+int exec(char *str, int place_value, int idx)
+{
+	int num;
+
+	num = 0;
+	if (!(place_value / 10))
 	{
-		t *= 10;
-		i++;
+		num = convert_char_to_int(str[idx]);
+		
+		return (num);
 	}
-
-	for (i = digit; i < (digit + digits_to_print); i++) /* calculate num */
+	else
 	{
-		num += (s[i] - '0') * t;
-		t /= 10;
-	}
+		num = convert_char_to_int(str[idx]) * place_value;
+		place_value /= 10;
+		idx++;
 
-	return (num * sign);
+		return (num + exec(str, place_value, idx));
+	}
+}
+
+/**
+ * _atoi - ascii to int
+ * @str: string
+ *
+ * Return: int
+ */
+int _atoi(char *str)
+{
+	int is_negative_flag, start_idx, place_value, num;
+	char *parsed_str;
+
+	start_idx = get_int_index_and_sign(str, &is_negative_flag);
+	parsed_str = parse_string(str, start_idx);
+	place_value = get_place_value(parsed_str);
+
+	num = exec(parsed_str, place_value, 0);
+	
+	return (is_negative_flag ? -num : num);
 }
