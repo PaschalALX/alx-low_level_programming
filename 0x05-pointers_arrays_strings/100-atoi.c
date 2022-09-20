@@ -126,7 +126,8 @@ int exec(char *str, int place_value, int idx)
  */
 int _atoi(char *str)
 {
-	int is_negative_flag, start_idx, place_value, num;
+	int is_negative_flag, start_idx, place_value;
+	unsigned int num;
 	char *parsed_str;
 
 	start_idx = get_int_index_and_sign(str, &is_negative_flag);
@@ -138,5 +139,5 @@ int _atoi(char *str)
 
 	num = exec(parsed_str, place_value, 0);
 
-	return (is_negative_flag ? -(int)num : num);
+	return (is_negative_flag ? -num : num);
 }
