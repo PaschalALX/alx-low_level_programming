@@ -12,6 +12,7 @@
 int get_int_index_and_sign(char *str, int *is_negative_flag)
 {
 	int index, size_of_str, i;
+	int sign1, sign2;
 
 	index = -1;
 	size_of_str = strlen(str) + 1;
@@ -26,13 +27,24 @@ int get_int_index_and_sign(char *str, int *is_negative_flag)
 			if (str[i] >= '0' && str[i] <= '9')
 			{
 				index = i;
-				if (str[i - 1] == '-')
-					*is_negative_flag = 1;
 				break;
 			}
 		}
 	}
 
+	/**
+	 * The following code helps determine the sign (+ or -)
+	 */
+	if (index > 0)
+	{
+		for (i = (index - 1); i >= 0; i--)
+		{
+			sign1 = str[i] == '-' ? -1 : 1;
+			sign2 = sign2 * sign1;
+		}
+	}
+	if (sign2 < 0)
+		*is_negative_flag = 1;
 	return (index);
 }
 
