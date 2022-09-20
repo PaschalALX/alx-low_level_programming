@@ -91,7 +91,8 @@ int get_place_value(char *str)
  */
 int exec(char *str, int place_value, int idx)
 {
-	int num, digit, i;
+	unsigned int num;
+	int digit, i;
 
 	digit = -1;
 	num = 0;
@@ -137,5 +138,5 @@ int _atoi(char *str)
 
 	num = exec(parsed_str, place_value, 0);
 
-	return (is_negative_flag ? -num : num);
+	return (is_negative_flag ? -(int)num : num);
 }
