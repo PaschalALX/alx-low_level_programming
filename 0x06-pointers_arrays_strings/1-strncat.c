@@ -18,26 +18,28 @@ int _strlen(char *str)
 }
 
 /**
- * _strcat - Concatenates strings
+ * _strncat - Concatenates strings
  * @dest: destination
  * @src: source
+ * @n: number of bytes
  *
  * Return: char *
  */
-char *_strcat(char *dest, char *src)
+char *_strncat(char *dest, char *src, int n)
 {
-	int dest_len, i, j, null_byte_idx;
+	int dest_len, src_len, i, j;
 
 	dest_len = _strlen(dest);
-	j = 0;
 
-	for (i = dest_len; src[j]l i++)
+	if (n > _strlen(src))
+		n = _strlen(src);
+
+	src_len = dest_len - 1 + n;
+	j = 0;
+	for (i = dest_len; i <= src_len; i++)
 	{
 		dest[i] = src[j];
 		j++;
 	}
-	null_byte_idx = dest_len + j;
-	dest[null_byte_idx] = '\0';
-
 	return (dest);
 }
