@@ -43,27 +43,3 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
-
-/**
- * _strncpy - Copies strings
- * @dest: destination
- * @src: source
- * @n: number of bytes
- *
- * Return: char *
- */
-char *_strncpy(char *dest, char *src, int n)
-{
-	int src_len, i;
-
-	src_len = _strlen(src);
-
-	for (i = 0; i < n; i++)
-	{
-		if (i <= src_len)
-			dest[i] = src[i];
-		else
-			dest[i] = 0;
-	}
-	return (dest);
-}
