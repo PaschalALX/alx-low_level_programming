@@ -53,19 +53,9 @@ int _strlen(char *str)
  */
 char char_toupper(char c)
 {
-	int i, j;
-
 	if (!(c >= 'a' && c <= 'z'))
 		return (c);
-
-	j = 0;
-	for (i = 'a'; i <= 'z'; i++)
-	{
-		if (c == i)
-			break;
-		j++;
-	}
-	return ('A' + j);
+	return (c - 32);
 }
 
 /**
@@ -77,31 +67,22 @@ char char_toupper(char c)
 
 char *cap_string(char *str)
 {
-	char uniq_c[14] = {',', ';', '.', '!', '?', '"', '('};
-	char rem_c[] = {')', '{', '}', '\n', '\t', ' ', '\0'};
-	int i, j;
+	int i = 0;
 
-	_strcat(uniq_c, rem_c);
-	for (i = 0; i < _strlen(str); i++)
+	if (s[i] >= 'a' && s[i] <= 'z')
+		s[i] = s[i] - 'a' + 'A';
+	i++;
+
+	while (s[i] != '\0')
 	{
-		for (j = 0; j < 13; j++)
-		{
-			if (str[i] == uniq_c[j])
-			{
-				while (str[i])
-				{
-					i++;
-					if ((str[i] >= '0' && str[i] <= '9'))
-						break;
-					if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
-					{
-						str[i] = char_toupper(str[i]);
-						break;
-					}
-				}
-			}
-		}
+		if ((s[i] >= 'a' && s[i] <= 'z')
+				&& (s[i - 1] == ',' || s[i - 1] == ';' || s[i - 1] == '.' ||
+					s[i - 1] == '!' || s[i - 1] == '?' || s[i - 1] == '"' ||
+					s[i - 1] == '(' || s[i - 1] == ')' || s[i - 1] == '{' ||
+					s[i - 1] == '}' || s[i - 1] == ' ' || s[i - 1] == '\t'
+					|| s[i - 1] == '\n'))
+			s[i] = s[i] - 'a' + 'A';
+		i++;
 	}
-
-	return (str);
+	return (s);
 }
