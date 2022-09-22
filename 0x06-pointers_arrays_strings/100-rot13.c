@@ -1,22 +1,3 @@
-#include <stdio.h>
-
-/**
- * _strlen - gets length of string
- * @str: string
- *
- * Return: int
- */
-int _strlen(char *str)
-{
-	int len, i;
-
-	len = 0;
-	for (i = 0; str[i]; i++)
-		len++;
-
-	return (len);
-}
-
 /**
  * rot13 - encodes a string using rot13.
  * @str: string
@@ -37,9 +18,9 @@ char *rot13(char *str)
 		'H', 'I', 'J', 'K', 'L', 'M'};
 	int i, j;
 
-	for (i = 0; i < _strlen(str); i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		for (j = 0; j < 53; j++)
+		for (j = 0; original[j] != '\0'; j++)
 		{
 			if (str[i] == original[j])
 			{
