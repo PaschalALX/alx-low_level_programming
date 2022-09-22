@@ -16,7 +16,7 @@ int _strlen(char *str)
 		len++;
 
 	return (len);
-}	
+}
 
 /**
  * char_toupper - converts character to Uppercase
