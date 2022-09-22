@@ -35,9 +35,7 @@ char *leet(char *str)
 		for (j = 0; j < 11; j++)
 		{
 			if (str[i] == english[j])
-			{
 				str[i] = leet[j];
-			{
 		}
 	}
 	return (str);
