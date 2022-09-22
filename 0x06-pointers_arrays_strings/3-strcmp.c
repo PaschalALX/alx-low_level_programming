@@ -16,7 +16,7 @@ int _strlen(char *str)
 		len++;
 
 	return (len);
-}	
+}
 
 /**
  * _strcmp - Compares two strings
@@ -31,15 +31,11 @@ int _strcmp(char *s1, char *s2)
 
 	for (i = 0; s1[i]; i++)
 	{
-		if (s1[i] > s2[i])
-			return (15);
-		else if (s1[i] < s2[i])
-			return (-15);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 
-		if (_strlen(s1) > _strlen(s2))
-			return (15);
-		else if (_strlen(s1) < _strlen(s2))
-			return (-15);
+		if (_strlen(s1) != _strlen(s2))
+			return (_strlen(s1) - _strlen(s2));
 	}
 	return (0);
 }
