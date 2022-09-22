@@ -25,19 +25,19 @@ int _strlen(char *str)
  */
 char *leet(char *str)
 {
-	char upper[6] = {'A', 'E', 'O', 'T', 'L', '\0'};
-	char lower[6] = {'a', 'e', 'o', 't', 'l', '\0'};
-	char digit[6] = {'4', '3', '0', '7', '1', '\0'};
+	int english[11] = {'a', 'A', 'e', 'E', 'o', 'O', 't', 'T', 'l', 'L'};
+	int leet[11] = {'4', '4', '3', '3', '0', '0', '7', '7', '1', '1'};
+
 	int i, j;
 
 	for (i = 0; i <= _strlen(str); i++)
 	{
-		for (j = 0; j <= 4; j++)
+		for (j = 0; j < 11; j++)
 		{
-			if ((str[i] == upper[j]) || (str[i] == lower[j]))
+			if (str[i] == english[j])
 			{
-				str[i] = digit[j];
-			}
+				str[i] = leet[j];
+			{
 		}
 	}
 	return (str);
