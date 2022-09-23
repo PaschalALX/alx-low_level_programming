@@ -1,87 +1,58 @@
+#include "main.h"
 #include <stdio.h>
 /**
- * first_func - 1st function needed to run print_buffer
- * @b: buffer
- * @k: int
- * @l: int
- * @i: int
+ * print_line - prints a s bytes of a buffer
+ * @c: buffer to print
+ * @s: bytes of buffer to print
+ * @l: line of buffer to print
  *
  * Return: void
  */
-void first_func(char *b, int k, int l, int i)
-{
-	k = (i / 10) * 10;
-	for (l = k; l <= i; l++)
-	{
-		if (b[l] >= 32 && b[l] <= 126)
-			putchar(b[l]);
-		else
-			putchar('.');
-	}
 
-	putchar(10);
-	printf("%08x: ", i + 1);
+void print_line(char *c, int s, int l)
+{
+int j, k;
+for (j = 0; j <= 9; j++)
+{
+if (j <= s)
+printf("%02x", c[l * 10 + j]);
+else
+printf("  ");
+if (j % 2)
+putchar(' ');
+}
+for (k = 0; k <= s; k++)
+{
+if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
+putchar(c[l * 10 + k]);
+else
+putchar('.');
+}
 }
 
 /**
- * sec_func - second function needed to run print_buffer
- * @b: buffer
- * @l: int
- * @l_phase: int
- * @size: int
- */
-void sec_func(char *b, int l, int l_phase, int size)
-{
-	for (l = l_phase; l <= (l_phase + ((l_phase + 9) - size)); l++)
-	{
-		putchar(' ');
-		putchar(' ');
-	}
-	putchar(' ');
-	putchar(' ');
-	for (l = l_phase; l < size; l++)
-	{
-		if (b[l] >= 32 && b[l] <= 126)
-			putchar(b[l]);
-		else
-			putchar('.');
-	}
-}
-
-/**
- * print_buffer - prints buffer
- * @b: buffer
- * @size: buffer size
+ * print_buffer - prints a buffer
+ * @b: buffer to print
+ * @size: size of buffer
  *
  * Return: void
  */
 void print_buffer(char *b, int size)
 {
-	int i, j, k, l, z;
-	int l_phase;
-
-	l_phase = z = (size / 10) * 10;
-	j = 1;
-	l = k = 0;
-
-	for (i = 0; i < size; i++)
-	{
-		if (i == 0)
-			printf("%08x: ", i);
-		printf("%02x", b[i]);
-
-		if (!(j % 2))
-			putchar(' ');
-
-		if (((i % 10 == 9) && i > 0))
-		{
-			first_func(b, k, l, i);
-		}
-		else if (i == size - 1)
-		{
-			sec_func(b, l, l_phase, size);
-		}
-		j++;
-	}
-	putchar('\n');
+int i;
+for (i = 0; i <= (size - 1) / 10 && size; i++)
+{
+printf("%08x: ", i * 10);
+if (i < size / 10)
+{
+print_line(b, 9, i);
+}
+else
+{
+print_line(b, size % 10 - 1, i);
+}
+putchar('\n');
+}
+if (size == 0)
+putchar('\n');
 }
