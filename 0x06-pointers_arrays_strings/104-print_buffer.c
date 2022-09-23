@@ -1,14 +1,14 @@
 #include <stdio.h>
 
 /**
- * print_line - Prints single line
+ * println - Prints single line
  * @b: buffer
  * @len: length of string
  * @start: starting position of each line
  *
  * Return: void
  */
-void print_line(char *b, int len, int start)
+void println(char *b, int len, int start)
 {
 	int i;
 
@@ -44,15 +44,18 @@ void print_buffer(char *b, int size)
 {
 	int i;
 
+	if (size <= 0)
+		putchar(10);
+
 	for (i = 0; i < size; i++)
 	{
 		if (!(i % 10) && !(i >= (size / 10) * 10))
 		{
-			print_line(b, 9, i);
+			println(b, 9, i);
 		}
 		else if (i >= (size / 10) * 10)
 		{
-			print_line(b, size - i - 1, i);
+			println(b, size - i - 1, i);
 			break;
 		}
 	}
