@@ -48,11 +48,11 @@ void print_buffer(char *b, int size)
 	{
 		if (!(i % 10) && !(i >= (size / 10) * 10))
 		{
-			print_line(b, 9, i, i);
+			print_line(b, 9, i);
 		}
 		else if (i >= (size / 10) * 10)
 		{
-			print_line(b, size - i - 1, i, i);
+			print_line(b, size - i - 1, i);
 			break;
 		}
 	}
