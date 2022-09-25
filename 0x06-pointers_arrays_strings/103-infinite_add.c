@@ -103,10 +103,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		sum = 0;
 	}
 
-	if (size_r < strlen(temp_b) + 1)
+	if (size_r < (int)strlen(temp_b) + 1)
 		return (0);
 
 	rev_char_array(temp_b);
 	strcpy(r, temp_b);
-	return (temp_b);
+	return (r);
 }
