@@ -53,38 +53,28 @@ char *rev_char_array(char *str)
 }
 
 /**
- * infinite_add - infinite add
+ * update_temp_buffer - Updated temporary buffer
+ * @temp_b: temporary buffer
  * @n1: string of numbers 1
  * @n2: string of numbers 2
- * @r: buffer
- * @size_r: size of buffer
+ * @n1_lastidx: last index of n1
+ * @n2_lastidx: last index of n2
  *
  * Return: char *
  */
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+char *update_temp_buffer(char *temp_b,
+			char *n1,
+			char *n2,
+			int n1_lastidx,
+			int n2_lastidx)
 {
-	int n1_len, n1_lastidx, n1_size;
-	int n2_len, n2_lastidx, n2_size;
 	int i, j, k, sum, overflow;
-	char temp_b[101];
-
-	n1_len = strlen(n1);
-	n1_lastidx = n1_len - 1;
-	n1_size = n1_len + 1;
-
-	n2_len = strlen(n2);
-	n2_lastidx = n2_len - 1;
-	n2_size = n2_len + 1;
-
-	if (size_r < n1_size || size_r < n2_size)
-		return (0);
 
 	sum = overflow = 0;
 
 	for (k = 0, i = n1_lastidx, j = n2_lastidx; k < 101; k++, i--, j--)
 	{
 		sum += overflow;
-
 		if (i >= 0)
 			sum += char_to_int(n1[i]);
 
@@ -102,6 +92,37 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		temp_b[k] = int_to_char(sum);
 		sum = 0;
 	}
+
+	return (temp_b);
+}
+
+/**
+ * infinite_add - infinite add
+ * @n1: string of numbers 1
+ * @n2: string of numbers 2
+ * @r: buffer
+ * @size_r: size of buffer
+ *
+ * Return: char *
+ */
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+	int n1_len, n1_lastidx, n1_size;
+	int n2_len, n2_lastidx, n2_size;
+	char temp_b[101];
+
+	n1_len = strlen(n1);
+	n1_lastidx = n1_len - 1;
+	n1_size = n1_len + 1;
+
+	n2_len = strlen(n2);
+	n2_lastidx = n2_len - 1;
+	n2_size = n2_len + 1;
+
+	if (size_r < n1_size || size_r < n2_size)
+		return (0);
+
+	strcpy(temp_b, update_temp_buffer(temp_b, n1, n2, n1_lastidx, n2_lastidx));
 
 	if (size_r < (int)strlen(temp_b) + 1)
 		return (0);
