@@ -1,78 +1,112 @@
-#include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
- * rev_string - reverse array
- * @n: integer params
- * Return: 0
+ * char_to_int - converts single character to integer
+ * @c: single character
+ *
+ * Return: int
  */
-
-void rev_string(char *n)
+int char_to_int(char c)
 {
-	int i = 0;
-	int j = 0;
-	char temp;
+	if (!(c >= '0' && c <= '9'))
+		return (c);
 
-	while (*(n + i) != '\0')
-	{
-		i++;
-	}
-	i--;
-
-	for (j = 0; j < i; j++, i--)
-	{
-		temp = *(n + j);
-		*(n + j) = *(n + i);
-		*(n + i) = temp;
-	}
+	return (c - 48);
 }
 
 /**
- * infinite_add - add 2 numbers together
- * @n1: text representation of 1st number to add
- * @n2: text representation of 2nd number to add
- * @r: pointer to buffer
- * @size_r: buffer size
- * Return: pointer to calling function
+ * int_to_char - converts single integer to character
+ * @n: single integer
+ *
+ * Return: char
  */
+char int_to_char(int n)
+{
+	if (n >= 0 && n <= 9)
+		return (48 + n);
 
+	return (48);
+}
+
+/**
+ * rev_char_array - reverses a string (array string)
+ * @str: string to be reversed
+ *
+ * Return: char*
+ */
+char *rev_char_array(char *str)
+{
+	int str_len = (int) strlen(str);
+	char temp;
+	int i = 0;
+
+	for (; i < str_len / 2; i++)
+	{
+		temp = str[i];
+		str[i] = str[str_len - i - 1];
+		str[str_len - i - 1] = temp;
+	}
+
+	return (str);
+}
+
+/**
+ * infinite_add - infinite add
+ * @n1: string of numbers 1
+ * @n2: string of numbers 2
+ * @r: buffer
+ * @size_r: size of buffer
+ *
+ * Return: char *
+ */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int overflow = 0, i = 0, j = 0, digits = 0;
-	int val1 = 0, val2 = 0, temp_tot = 0;
+	int n1_len, n1_lastidx, n1_size;
+	int n2_len, n2_lastidx, n2_size;
+	int i, j, k, sum, overflow;
+	char temp_b[101];
 
-	while (*(n1 + i) != '\0')
-		i++;
-	while (*(n2 + j) != '\0')
-		j++;
-	i--;
-	j--;
-	if (j >= size_r || i >= size_r)
+	n1_len = strlen(n1);
+	n1_lastidx = n1_len - 1;
+	n1_size = n1_len + 1;
+
+	n2_len = strlen(n2);
+	n2_lastidx = n2_len - 1;
+	n2_size = n2_len + 1;
+
+	if (size_r < n1_size || size_r < n2_size)
 		return (0);
-	while (j >= 0 || i >= 0 || overflow == 1)
+
+	sum = overflow = 0;
+
+	for (k = 0, i = n1_lastidx, j = n2_lastidx; k < 101; k++, i--, j--)
 	{
-		if (i < 0)
-			val1 = 0;
-		else
-			val1 = *(n1 + i) - '0';
-		if (j < 0)
-			val2 = 0;
-		else
-			val2 = *(n2 + j) - '0';
-		temp_tot = val1 + val2 + overflow;
-		if (temp_tot >= 10)
-			overflow = 1;
-		else
-			overflow = 0;
-		if (digits >= (size_r - 1))
-			return (0);
-		*(r + digits) = (temp_tot % 10) + '0';
-		digits++;
-		j--;
-		i--;
+		sum += overflow;
+
+		if (i >= 0)
+			sum += char_to_int(n1[i]);
+
+		if (j >= 0)
+			sum += char_to_int(n2[j]);
+
+		if (i < 0 && j < 0 && !overflow)
+		{
+			temp_b[k] = '\0';
+			break;
+		}
+
+		overflow = sum / 10;
+		sum %= 10;
+		temp_b[k] = int_to_char(sum);
+		sum = 0;
 	}
-	if (digits == size_r)
+
+	if (size_r < strlen(temp_b) + 1)
 		return (0);
-	*(r + digits) = '\0';
-	rev_string(r);
-	return (r);
+
+	rev_char_array(temp_b);
+	strcpy(r, temp_b);
+	return (temp_b);
 }
