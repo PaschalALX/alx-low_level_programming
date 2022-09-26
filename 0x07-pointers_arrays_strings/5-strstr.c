@@ -10,22 +10,34 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-	int start, i, j, needle_len;
+	int idx, i, j, k, needle_len;
 
-	start = -1;
-	i = j = 0;
-
+	idx = -1;
+	needle_len = (int) strlen(needle);
 	for (i = 0; *(haystack + i); i++)
-		for (j = 0; *(needle + j); j++)
-			if (*(haystack + i) == *needle)
-				start = i;
-	if (start == -1)
-		return (NULL);
+	{
+		if (*needle == *(haystack + i))
+		{
 
-	needle_len = (int)strlen(needle);
-	for (i = start, j = 0; j < needle_len; i++, j++)
-		if (*(haystack + i) != *(needle + j))
-			return (NULL);
+			for (k = 0, j = i; k < needle_len; j++, k++)
+			{
+				if (*(needle + k) != *(haystack + j))
+				{
+					k = 0;
+					break;
+				}
+				else if ((k == needle_len - 1) && (*(needle + k) == *(haystack + j)))
+				{
+					idx = i;
+					break;
+				}
+			}
+		}
+		if (idx >= 0)
+			break;
+	}
 
-	return (haystack + start);
+	if (idx >= 0)
+		return (haystack + idx);
+	return (NULL);
 }
