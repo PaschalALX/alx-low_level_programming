@@ -24,6 +24,5 @@ void print_diagsums(int *a, int size)
 	for (i = end_of_buffer - size; i >= 0; i -= (size - 1))
 		sum_2 += a[i];
 
-	printf("%d, ", sum_1);
-	printf("%d\n", sum_2);
+	printf("%d, %d\n", sum_1, sum_2);
 }
