@@ -10,20 +10,17 @@
  */
 void print_diagsums(int *a, int size)
 {
-	unsigned long int sum_1, sum_2;
-	int end_of_buffer, step;
+	unsigned int sum_1, sum_2;
 	int i;
 
 	sum_1 = sum_2 = 0;
-	end_of_buffer = size * size;
-	step = size + 1;
 
-	for (i = 0; i < end_of_buffer; i += step)
-		sum_1 += a[i];
+	for (i = 0; i < size; i++)
+	{
+		sum_1 += a[(size * i) + i];
+		sum_2 += a[(size * (i + 1)) - (i + 1)];
+	}
 
-	for (i = end_of_buffer - size; i >= 0; i -= (size - 1))
-		sum_2 += a[i];
-
-	printf("%lu, %lu\n", sum_1, sum_2);
+	printf("%d, %d\n", sum_1, sum_2);
 }
 
