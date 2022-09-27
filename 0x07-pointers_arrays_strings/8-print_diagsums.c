@@ -13,9 +13,9 @@ void print_diagsums(int *a, int size)
 {
 	unsigned int sum_1, sum_2;
 	int end_of_buffer, step;
-	int i;
+	int i, k;
 
-	sum_1 = sum_2 = 0;
+	sum_1 = sum_2 = k = 0;
 	end_of_buffer = size * size;
 	step = size + 1;
 
@@ -23,7 +23,13 @@ void print_diagsums(int *a, int size)
 		sum_1 += a[i];
 
 	for (i = end_of_buffer - size; i >= 0; i -= (size - 1))
+	{
 		sum_2 += a[i];
+
+		if (k == size - 1)
+			break;
+		k++;
+	}
 
 	printf("%d, %d\n", sum_1, sum_2);
 }
