@@ -18,7 +18,8 @@ char *_strstr(char *haystack, char *needle)
 	needle_len = (int) strlen(needle);
 
 	for (i = 0; *(haystack + i); i++)
-	{	if (*needle == *(haystack + i))
+	{
+		if (*needle == *(haystack + i))
 		{
 			for (k = 0, j = i; k < needle_len; j++, k++)
 				if (*(needle + k) != *(haystack + j))
