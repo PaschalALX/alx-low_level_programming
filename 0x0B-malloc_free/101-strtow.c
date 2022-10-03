@@ -76,7 +76,7 @@ char **parse_str(char *str, char **words, int word_me_alloc)
 char **strtow(char *str)
 {
 	char **words;
-	int wc = word_count(str) + 1;
+	int wc = word_count(str);
 	int w_ma = 1;
 	int i, j;
 
