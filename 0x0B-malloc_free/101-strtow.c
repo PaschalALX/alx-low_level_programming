@@ -76,7 +76,7 @@ char **parse_str(char *str, char **words, int word_me_alloc)
 char **strtow(char *str)
 {
 	char **words;
-	int wc = word_count(str) + 1;
+	int wc = word_count(str);
 	int w_ma = 1;
 	int i, j;
 
@@ -95,7 +95,7 @@ char **strtow(char *str)
 
 	words = (char **) malloc(sizeof(char *) * wc);
 
-	for (i = 0; i < wc - 1; i++)
+	for (i = 0; i < wc; i++)
 	{
 		words[i] = (char *) malloc(sizeof(char) * w_ma);
 	}
