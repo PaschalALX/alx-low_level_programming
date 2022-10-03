@@ -30,8 +30,7 @@ void new_str_size(char **av, int ac, int *str_size)
 char *argstostr(int ac, char **av)
 {
 	int i, j, k = 0;
-	int av_size = ac - 1;
-	int str_size = 1;
+	int str_size = 0;
 	char *str;
 
 	if (ac == 0 || av == NULL)
