@@ -1,5 +1,4 @@
-
-
+#include <stdlib.h>
 
 /**
  * free_grid - Free up memory allocated to grid
