@@ -82,12 +82,12 @@ char **strtow(char *str)
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
-	
+
 	j = 0;
 	for (i = 0; str[i]; i++)
 	{
 		if (str[i] != ' ')
-			j++;		
+			j++;
 	}
 
 	if (!j)
