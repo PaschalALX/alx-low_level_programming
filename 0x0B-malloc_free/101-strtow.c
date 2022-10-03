@@ -104,7 +104,7 @@ char **strtow(char *str)
 		return (NULL);
 
 	words = parse_str(str, words, w_ma);
-	/*words[wc - 1] = NULL;*/
+	/*words[wc] = NULL;*/
 
 	return (words);
 }
