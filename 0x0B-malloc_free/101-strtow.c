@@ -15,7 +15,7 @@ int word_count(char *str)
 	if (str[0] != ' ')
 		wc = 1;
 
-	i = 0;
+	i = 1;
 	while (str[i])
 	{
 		if ((str[i] == ' ' && str[i + 1] != ' '))
@@ -95,7 +95,7 @@ char **strtow(char *str)
 
 	words = (char **) malloc(sizeof(char *) * wc);
 
-	for (i = 0; i < (wc - 1); i++)
+	for (i = 0; i < wc; i++)
 	{
 		words[i] = (char *) malloc(sizeof(char) * w_ma);
 	}
@@ -104,7 +104,7 @@ char **strtow(char *str)
 		return (NULL);
 
 	words = parse_str(str, words, w_ma);
-	/*words[wc] = NULL;*/
+	words[wc] = NULL;
 
 	return (words);
 }
