@@ -95,7 +95,7 @@ char **strtow(char *str)
 
 	words = (char **) malloc(sizeof(char *) * wc);
 
-	for (i = 0; i < wc; i++)
+	for (i = 0; i < wc - 1; i++)
 	{
 		words[i] = (char *) malloc(sizeof(char) * w_ma);
 	}
@@ -104,7 +104,7 @@ char **strtow(char *str)
 		return (NULL);
 
 	words = parse_str(str, words, w_ma);
-	words[wc - 1] = NULL;
+	/*words[wc - 1] = NULL;*/
 
 	return (words);
 }
