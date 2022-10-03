@@ -78,9 +78,19 @@ char **strtow(char *str)
 	char **words;
 	int wc = word_count(str) + 1;
 	int w_ma = 1;
-	int i;
+	int i, j;
 
-	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && (int)strlen(str) == 1))
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+	
+	j = 0;
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] != ' ')
+			j++;		
+	}
+
+	if (!j)
 		return (NULL);
 
 	words = (char **) malloc(sizeof(char *) * wc);
