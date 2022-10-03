@@ -14,6 +14,11 @@ char *str_concat(char *s1, char *s2)
 	int i, j;
 	char *new_sptr;
 
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+
 	s1_len = (int)strlen(s1);
 	s2_len = (int)strlen(s2);
 	size = s1_len + s2_len + 1;
