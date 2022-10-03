@@ -12,7 +12,7 @@ int word_count(char *str)
 	int wc, i;
 
 	if (str[0] != ' ')
-		wc++;
+		wc = 1;
 
 	i = 0;
 	while (str[i])
@@ -79,7 +79,7 @@ char **strtow(char *str)
 	int w_ma = 1;
 	int i;
 
-	if (str == NULL || str == "")
+	if (str == NULL || str[0] == '\0')
 		return (NULL);
 
 	words = (char **) malloc(sizeof(char *) * wc);
