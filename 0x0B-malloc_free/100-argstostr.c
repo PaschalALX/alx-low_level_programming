@@ -43,7 +43,7 @@ char *argstostr(int ac, char **av)
 	if (!str)
 		return (NULL);
 
-	for (i = 0; i < av_size; i++)
+	for (i = 0; i < ac; i++)
 	{
 		for (j = 0; j <= (int)strlen(av[i]); j++, k++)
 		{
