@@ -61,7 +61,7 @@ char **strtow(char *str)
 	token = strtok(str_cpy, " ");
 	while (token != NULL)
 	{
-		words[i] = (char *)malloc(sizeof(char) * (strlen(token) + 1));
+		words[i] = (char *)malloc(sizeof(char));
 		words[i] = token;
 		token = strtok(NULL, " ");
 		i++;
