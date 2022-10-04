@@ -36,8 +36,20 @@ char **strtow(char *str)
 {
 	char **words;
 	char *str_cpy;
-	int wc, i;
+	int wc, i, j;
 	char *token;
+
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+
+	j = 0;
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] != ' ')
+			j++;
+	}
+	if (!j)
+		return (NULL);
 
 	str_cpy = (char *)malloc(sizeof(char) * (strlen(str) + 1));
 	strcpy(str_cpy, str);
