@@ -12,59 +12,18 @@ int word_count(char *str)
 {
 	int wc, i;
 
+	wc = 0;
 	if (str[0] != ' ')
 		wc = 1;
 
 	i = 1;
 	while (str[i])
 	{
-		if ((str[i] == ' ' && str[i + 1] != ' '))
+		if (str[i] == ' ' && (str[i + 1] != ' ' && str[i + 1] != '\0'))
 			wc++;
 		i++;
 	}
 	return (wc);
-}
-
-/**
- * parse_str - gets the words out of the string
- * @str: string/sentence
- * @words: array of words to replace
- * @word_me_alloc: word memory allocation
- *
- * Return: char **
- */
-char **parse_str(char *str, char **words, int word_me_alloc)
-{
-	int i, j, k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-
-	while (str[i])
-	{
-		if (str[i] == ' ' && str[i + 1] == ' ')
-			i++;
-		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-		{
-			words[j][k] = str[i];
-			k++;
-			words[j] = (char *) realloc(words[j], sizeof(char) * ++word_me_alloc);
-			words[j][k] = '\0';
-
-			k = 0;
-			word_me_alloc = 0;
-			j++;
-		}
-		if (str[i] != ' ' && (str[i + 1] != ' ' && str[i + 1] != '\0'))
-		{
-			words[j][k] = str[i];
-			words[j] = (char *) realloc(words[j], sizeof(char) * ++word_me_alloc);
-			k++;
-		}
-		i++;
-	}
-	return (words);
 }
 
 /**
@@ -76,35 +35,24 @@ char **parse_str(char *str, char **words, int word_me_alloc)
 char **strtow(char *str)
 {
 	char **words;
-	int wc = word_count(str);
-	int w_ma = 1;
-	int i, j;
+	char *str_cpy;
+	int wc, i;
+	char *token;
 
-	if (str == NULL || str[0] == '\0')
-		return (NULL);
+	str_cpy = (char *)malloc(sizeof(char) * (strlen(str) + 1));
+	strcpy(str_cpy, str);
 
-	j = 0;
-	for (i = 0; str[i]; i++)
+	wc = 0;
+	wc = word_count(str);
+	words = (char **)malloc(sizeof(char *) * wc + 1);
+	i = 0;
+	token = strtok(str_cpy, " ");
+	while (token != NULL)
 	{
-		if (str[i] != ' ')
-			j++;
+		words[i] = (char *)malloc(sizeof(char) * (strlen(token) + 1));
+		words[i] = token;
+		token = strtok(NULL, " ");
+		i++;
 	}
-
-	if (!j)
-		return (NULL);
-
-	words = (char **) malloc(sizeof(char *) * wc);
-
-	for (i = 0; i < wc; i++)
-	{
-		words[i] = (char *) malloc(sizeof(char) * w_ma);
-	}
-
-	if (!words)
-		return (NULL);
-
-	words = parse_str(str, words, w_ma);
-	words[wc] = NULL;
-
 	return (words);
 }
