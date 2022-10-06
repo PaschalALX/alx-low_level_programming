@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * _realloc - reallocate memory
+ * @ptr: pointer
+ * @old_size: old size
+ * @new_size: new size
+ *
+ * Return: void *
+ */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	int i;
@@ -31,6 +39,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		{
 			*((char *)new_ptr + i) = *((char *)ptr + i);
 		}
+		free(ptr);
 	}
 	return (new_ptr);
 }
