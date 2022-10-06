@@ -15,7 +15,7 @@ void *malloc_checked(unsigned int b)
 
 	if (m_ptr == NULL)
 	{
-		free(m_ptr)
+		free(m_ptr);
 		exit(98);
 	}
 
