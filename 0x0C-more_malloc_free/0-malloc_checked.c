@@ -12,9 +12,6 @@ void *malloc_checked(unsigned int b)
 {
 	void *ptr;
 
-	if (b == INT_MAX)
-		exit(98);
-
 	ptr = malloc(b);
 
 	if (ptr == NULL)
