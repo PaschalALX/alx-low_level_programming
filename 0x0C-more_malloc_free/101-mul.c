@@ -157,7 +157,7 @@ int main(int argc, char **argv)
 
 	buf_len = (int) strlen(longer) * 3;
 	buf = malloc(sizeof(char) * buf_len);
-
+	free(buf);
 	exec(shorter, longer, buf_len, buf);
 	return (0);
 }
