@@ -30,6 +30,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	s1_size = strlen(s1) + 1;
 	new_str_buf = malloc(sizeof(char) * (n + s1_size));
 
+	if (new_str_buf == NULL)
+		return (NULL);
 	k = 0;
 	for (i = 0; i < strlen(s1); i++, k++)
 		new_str_buf[k] = s1[i];
