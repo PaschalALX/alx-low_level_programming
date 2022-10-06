@@ -127,6 +127,7 @@ void exec(char *shorter, char *longer, int buf_len, char *buf)
 		k = l;
 	}
 	printf("%s\n", rev(buf));
+	free(buf);
 }
 
 /**
