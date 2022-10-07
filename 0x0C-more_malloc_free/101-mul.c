@@ -107,7 +107,7 @@ void exec(char *shorter, char *longer, int buf_len, char *buf)
 			mul += of;
 			of = mul / 10;
 
-			if (mul == 0 && j < 0)
+			if (mul == 0 && sof == 0 && j < 0)
 				break;
 
 			if (!(buf[k] >= '0' && buf[k] <= '9'))
@@ -157,7 +157,7 @@ int main(int argc, char **argv)
 
 	buf_len = (int) strlen(longer) * 3;
 	buf = malloc(sizeof(char) * buf_len);
-	free(buf);
+
 	exec(shorter, longer, buf_len, buf);
 	return (0);
 }
