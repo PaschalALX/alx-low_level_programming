@@ -131,6 +131,41 @@ void exec(char *shorter, char *longer, int buf_len, char *buf)
 }
 
 /**
+ * check_zeros - checks for zeros
+ * @a: first string
+ * @b: second string
+ *
+ * Return: void
+ */
+void check_zeros(char *a, char *b)
+{
+	int i = 0;
+	int flag1 = 1;
+	int flag2 = 1;
+
+	for (i = 0; i < (int) strlen(a); i++)
+	{
+		if (a[i] != '0')
+		{
+			flag1 = 0;
+			break;
+		}
+	}
+	for (i = 0; i < (int) strlen(b); i++)
+	{
+		if (b[i] != '0')
+		{
+			flag2 = 0;
+			break;
+		}
+	}
+	if (flag1 || flag2)
+	{
+		printf("0\n");
+		exit(0);
+	}
+}
+/**
  * main - Entry point
  * @argc: argument count
  * @argv: argument vector
@@ -143,6 +178,7 @@ int main(int argc, char **argv)
 	int buf_len;
 
 	error_checks(argc, argv);
+	check_zeros(argv[1], argv[2]);
 
 	if (strlen(argv[1]) >= strlen(argv[2]))
 	{
