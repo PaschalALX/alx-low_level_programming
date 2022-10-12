@@ -20,13 +20,13 @@ int (*get_op_func(char *s))(int, int)
 	};
 	int i;
 
-	if (s)
+	i = 0;
+	while (ops[i].op)
 	{
-		for (i = 0; ops[i].op; i++)
-		{
-			if (!strcmp(s, ops[i].op))
-				return (ops[i].f);
-		}
+		if (!strcmp(s, ops[i].op))
+			return (ops[i].f);
+
+		i++;
 	}
 	return (NULL);
 }
