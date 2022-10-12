@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /**
  * main - Entry point
@@ -31,9 +32,14 @@ int main(int argc, char **argv)
 
 	if (fp)
 	{
-		while (i <= atoi(argv[1]))
+		while (true)
 		{
 			c = getc(fp);
+			if (i == atoi(argv[1]) - 1)
+			{
+				printf("%2x", c);
+				break;
+			}
 			printf("%2x ", c);
 			i++;
 		}
