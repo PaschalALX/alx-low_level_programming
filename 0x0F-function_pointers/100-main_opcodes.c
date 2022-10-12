@@ -29,12 +29,15 @@ int main(int argc, char **argv)
 	i = 0;
 	fp = fopen(__FILE__, "r");
 
-	while (i <= atoi(argv[1]))
+	if (fp)
 	{
-		c = getc(fp);
-		printf("%2x ", c);
-		i++;
+		while (i <= atoi(argv[1]))
+		{
+			c = getc(fp);
+			printf("%2x ", c);
+			i++;
+		}
+		putchar(10);
+		fclose(fp);
 	}
-	putchar(10);
-	fclose(fp);
 }
