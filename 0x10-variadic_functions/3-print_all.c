@@ -40,6 +40,6 @@ void print_all(const char * const format, ...)
 		if (format[i + 1])
 			printf(", ");
 	}
-	putchar(10);
 	va_end(args);
+	putchar(10);
 }
