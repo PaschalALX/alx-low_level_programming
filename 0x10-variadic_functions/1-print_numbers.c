@@ -19,10 +19,10 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		while (i--)
 		{
 			printf("%d", va_arg(args, int));
-			if (i > 0 && separator)
+			if ((i > 0) && separator)
 				printf("%s", separator);
 		}
-		putchar(10);
 		va_end(args);
+		putchar(10);
 	}
 }
