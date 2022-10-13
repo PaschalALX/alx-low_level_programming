@@ -10,11 +10,11 @@
  */
 void print_all(const char * const format, ...)
 {
-	int i = -1, j = 0;
+	int i = -1;
 	char *str, *str_fmt = "%p";
 	va_list args;
 
-	va_start(args, strlen(format));
+	va_start(args, format);
 	while (format[++i])
 	{
 		switch (format[i])
@@ -26,7 +26,7 @@ void print_all(const char * const format, ...)
 				printf("%i", va_arg(args, int));
 				break;
 			case 'f':
-				printf("%f", va_arg(args, float));
+				printf("%f", va_arg(args, double));
 				break;
 			case 's':
 				str = va_arg(args, char *);
