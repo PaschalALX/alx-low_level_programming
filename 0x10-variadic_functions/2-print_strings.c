@@ -21,12 +21,14 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		while (i--)
 		{
 			str = va_arg(args, char *);
+
 			str ? printf("%s", str) :
 				printf("%p", str);
+
 			if ((i > 0) && separator)
 				printf("%s", separator);
 		}
 		va_end(args);
-		putchar(10);
 	}
+	putchar(10);
 }
