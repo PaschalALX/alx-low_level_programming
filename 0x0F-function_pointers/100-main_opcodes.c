@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
-	if (atoi(argv[1]) < 0)
+	if (atoi(argv[1]) <= 0)
 	{
 		printf("Error\n");
 		exit(2);
@@ -33,8 +33,6 @@ int main(int argc, char **argv)
 	{
 		c = *(unsigned char *)main_address;
 
-		if (atoi(argv[i]) == 0)
-			break;
 		if (i == atoi(argv[1]) - 1)
 		{
 			printf("%02x", c);
