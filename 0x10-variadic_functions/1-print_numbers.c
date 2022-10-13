@@ -16,18 +16,18 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	if (!separator)
 		return;
 
-	if ((int)n < 0)
-		return;
-
-	va_start(args, n);
-	while (i--)
+	if (n > 0)
 	{
-		if (i == 0)
+		va_start(args, n);
+		while (i--)
 		{
-			printf("%i", va_arg(args, int));
-			break;
+			if (i == 0)
+			{
+				printf("%d", va_arg(args, int));
+				break;
+			}
+			printf("%d%s", va_arg(args, int), separator);
 		}
-		printf("%i%s", va_arg(args, int), separator);
+		putchar(10);
 	}
-	putchar(10);
 }
