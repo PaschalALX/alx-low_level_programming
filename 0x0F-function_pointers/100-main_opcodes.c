@@ -34,10 +34,10 @@ int main(int argc, char **argv)
 		c = *(unsigned char *)main_address;
 		if (i == atoi(argv[1]) - 1)
 		{
-			printf("%2x", c);
+			printf("%02x", c);
 			break;
 		}
-		printf("%2x ", c);
+		printf("%02x ", c);
 		i++;
 		main_address++;
 	}
