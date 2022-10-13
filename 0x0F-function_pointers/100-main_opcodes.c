@@ -43,4 +43,6 @@ int main(int argc, char **argv)
 		main_address++;
 	}
 	putchar(10);
+
+	return (0);
 }
