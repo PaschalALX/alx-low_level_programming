@@ -12,9 +12,9 @@
 
 int main(int argc, char **argv)
 {
-	FILE *fp;
-	char c;
+	int (*main_address)(int, char**) = main;
 	int i;
+	unsigned char c;
 
 	if (argc != 2)
 	{
@@ -22,28 +22,24 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
-	if (atoi(argv[1]) < 0)
+	if (atoi(argv[1]) <= 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
 	i = 0;
-	fp = fopen(__FILE__, "r");
 
-	if (fp)
+	while (true)
 	{
-		while (true)
+		c = *(unsigned char *)main_address;
+		if (i == atoi(argv[1]) - 1)
 		{
-			c = getc(fp);
-			if (i == atoi(argv[1]) - 1)
-			{
-				printf("%2x", c);
-				break;
-			}
-			printf("%2x ", c);
-			i++;
+			printf("%2x", c);
+			break;
 		}
-		putchar(10);
-		fclose(fp);
+		printf("%2x ", c);
+		i++;
+		main_address++;
 	}
+	putchar(10);
 }
