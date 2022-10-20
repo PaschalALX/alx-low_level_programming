@@ -1,7 +1,15 @@
 #include <stdio.h>
 
 void before_main(void) __attribute__((constructor));
-void before_main()
+
+/**
+ * before_main - a constructor function to run before the main
+ * entry function
+ *
+ * Return: void
+ */
+void before_main(void)
 {
-	printf("You're beat! and yet, you must allow,\nI bore my house upon my back!\n");
+	printf("You're beat! and yet, you must allow,\n
+			I bore my house upon my back!\n");
 }
