@@ -10,6 +10,8 @@ void before_main(void) __attribute__((constructor));
  */
 void before_main(void)
 {
-	printf("You're beat! and yet, you must allow,\n
-			I bore my house upon my back!\n");
+	char *str_1 = "You're beat! and yet, you must allow,";
+	char *str_2 = "I bore my house upon my back!";
+
+	printf("%s\n%s\n", str_1, str_2);
 }
