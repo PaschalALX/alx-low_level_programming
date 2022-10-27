@@ -12,6 +12,9 @@ unsigned int binary_to_uint(const char *b)
 	int i;
 	int base2, base10;
 
+	if (!b)
+		return (0);
+
 	base2 = 1;
 	base10 = 0;
 	len = strlen(b);
