@@ -1,28 +1,31 @@
 #include <string.h>
 
 /**
- * binary_to_uint2 - converts a binary number to an unsigned int.
+ * binary_to_uint - converts a binary number to an unsigned int.
  * @b: string of binaries
  *
  * Return: unsigned int
  */
-unsigned int binary_to_uint2(const char *b)
+unsigned int binary_to_uint(const char *b)
 {
-	unsigned int i;
-	unsigned int base10;
-	unsigned int max_exp;
+	size_t len;
+	int i;
+	int base2, base10;
 
-	if (b[0] == 48 && b[1] == 0)
+	base2 = 1;
+	base10 = 0;
+	len = strlen(b);
+
+	if (!len)
 		return (0);
 
-	base10 = 0;
-	max_exp = max_expo(b);
-
-	for (i = 0; b[i]; i++)
+	for (i = len - 1; i >= 0; i--)
 	{
 		if (!(b[i] == '0' || b[i] == '1'))
 			return (0);
-		base10 += two_to_pow(max_exp - i) * (b[i] - 48);
+
+		base10 += base2 * (b[i] - 48);
+		base2 *= 2;
 	}
 	return (base10);
 }
