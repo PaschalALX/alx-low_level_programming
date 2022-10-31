@@ -1,50 +1,52 @@
 #include "main.h"
 
 /**
- * read_textfile - read a certain size and prints to std output
- * @filename: file to reafrom
- * @letters: size to read
- * Return: actual size read and printed
+ * read_textfile - reads a text file and prints it to the
+ * POSIX standard output
+ * @filename: filename to be opened
+ * @letters: number of letters to be read and printed
+ *
+ * Return: actual number of letters it could read and
+ * print (ssize_t)
  */
-
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd; /* file descriptor */
-	ssize_t n_read, n_wrote;
+	int fd;
+	ssize_t r_size, w_size;
 	char *buffer;
 
-	if (filename == NULL)
+	if (!filename)
 		return (0);
 
-	/* open */
+	/* open file */
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
 
-	/* malloc buffer */
+	/* create buffer */
 	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
+	if (!buffer)
 		return (0);
 
-	/* read */
-	n_read = read(fd, buffer, letters);
-	if (n_read == -1)
+	/* read file */
+	r_size = read(fd, buffer, letters);
+	if (r_size == -1)
 	{
 		free(buffer);
 		close(fd);
 		return (0);
 	}
 
-	/* write */
-	n_wrote = write(STDOUT_FILENO, buffer, n_read);
-	if (n_wrote == -1)
+	/* write buffer */
+	w_size = write(1, buffer, r_size);
+	if (w_size == -1 || w_size != r_size)
 	{
 		free(buffer);
 		close(fd);
 		return (0);
 	}
 
+	free(buffer);
 	close(fd);
-	return (n_read);
-
+	return (r_size);
 }
