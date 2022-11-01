@@ -23,8 +23,6 @@ void print_data(unsigned char *e_ident);
 void pri_version(unsigned char *e_identnt);
 void print_abi(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
-void print_entry(unsigned long int e_entry, unsigned char *e_ident);
-void close_elf(int elf);
+void print_type(uint16_t e_type);
 
 #endif /* MAIN_H */
