@@ -121,7 +121,7 @@ void print_osabi(unsigned char *e_ident)
 			printf("Linux");
 			break;
 		case ELFOSABI_SOLARIS:
-			printf("Solaris");
+			printf("UNIX - Solaris");
 			break;
 		case ELFOSABI_IRIX:
 			printf("IRIX");
@@ -168,7 +168,28 @@ void print_type(uint16_t e_type)
 	}
 	printf("\n");
 }
+/**
+ *  * print_entry - Prints the entry point of an ELF header.
+ *   * @e_entry: The address of the ELF entry point.
+ *    * @e_ident: A pointer to an array containing the ELF class.
+ *     */
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+{
+	printf("%-37s", "  Entry point address:");
 
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e_entry = ((e_entry << 8) & 0xFF00FF00) |
+			((e_entry >> 8) & 0xFF00FF);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
+	}
+
+	if (e_ident[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)e_entry);
+
+	else
+		printf("%#lx\n", e_entry);
+}
 /**
  * close_n_free - closes fd and frees malloc
  * @header: pointer to ELF struct
@@ -246,8 +267,7 @@ int main(int argc, char **argv)
 	print_osabi(header->e_ident);
 	printf("%-37s%d\n", "  ABI Version:", header->e_ident[EI_ABIVERSION]);
 	print_type(header->e_type);
-	printf("%-37s0x%02lx\n", "  Entry point address:",  header->e_entry);
-
+	print_entry(header->e_entry, header->e_ident);
 	close_n_free(header, fd);
 	return (0);
 }
