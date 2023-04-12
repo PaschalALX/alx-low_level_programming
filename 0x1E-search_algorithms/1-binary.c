@@ -1,4 +1,28 @@
 #include <stddef.h>
+#include <stdio.h>
+
+/**
+ * print_search_index - prints searched index of an array
+ * @first: first index
+ * @last: last index
+ */
+
+void print_search_index(int first, int last)
+{
+	first = first - 1;
+	last = last - 1;
+	printf("Searching in array:");
+
+	while (first <= last)
+	{
+		if (first == last)
+			printf(" %d", ++first);
+		else
+			printf(" %d,", ++first);
+	}
+	putchar(10);
+}
+
 /**
  * binary_search - searches for a value in a sorted array of integers
  * @array: pointer to the first element of the array to search in
@@ -16,6 +40,7 @@ int binary_search(int *array, size_t size, int value)
 
 	while (1)
 	{
+		print_search_index(left, right);
 		if (value == array[mid])
 			return (mid);
 		if ((mid == left) && (mid == right))
